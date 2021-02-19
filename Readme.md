@@ -7,7 +7,7 @@ Golang implementation of the Cryptographic Hash Functions (CHF) used in CryptoPl
 First CHF implemented is Blake3, a pure Golang implementation.
 Forked from: `https://github.com/lukechampine/blake3`
 
-Added CustomOutput size option.
+Added CustomOutput size option for unkeyed hash.
 
 ## Example for custom Output:
 ```Go
