@@ -22,7 +22,7 @@ import (
 
 func main() {
     var (
-	S3ByteArray []byte
+	SByteArray []byte
 	MyString = "Hello, playground"
     )
 
@@ -33,9 +33,9 @@ func main() {
 
     //Converting the resulting hash which is a slice of bytes, to hex (byte to hex)
     for i := 0; i < len(S); i++ {
-	S3ByteArray = append(S3ByteArray, S[i])
+	SByteArray = append(SByteArray, S[i])
     }
-    Hex := hex.EncodeToString(S3ByteArray)
+    Hex := hex.EncodeToString(SByteArray)
 
     fmt.Println("Unkeyed [", MyString, "], hashed in blake3 with 1024 bit output as byte is:", S)
     fmt.Println("Unkeyed [", MyString, "], hashed in blake3 with 1024 bit output as hex  is:", Hex)
