@@ -1,7 +1,7 @@
 package AES
 
 import (
-	blake3 "Cryptographic-Hash-Functions/Blake3"
+	"Cryptographic-Hash-Functions/Blake3"
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/rand"
@@ -31,7 +31,7 @@ func MakeKeyFromPassword(Password string) []byte {
 	var SByteArray []byte
 	//Making Key from Password. A Blake3 Hash with 32 bytes output is used.
 	PasswordToByteSlice := []byte(Password)
-	HashedPassword := blake3.SumCustom(PasswordToByteSlice, 32)
+	HashedPassword := Blake3.SumCustom(PasswordToByteSlice, 32)
 	//Converting the resulting hash which is a slice of bytes, to hex (byte to hex)
 	for i := 0; i < len(HashedPassword); i++ {
 		SByteArray = append(SByteArray, HashedPassword[i])
