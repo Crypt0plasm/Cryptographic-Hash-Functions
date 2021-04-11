@@ -55,7 +55,7 @@ func EncryptBitString(BitString, Password string) (BitStringOutput string) {
 	Block, err1 := aes.NewCipher(Key)
 	// if there are any errors, handle them
 	if err1 != nil {
-		fmt.Println(err1)
+		fmt.Println("Block Error:", err1)
 	}
 
 	//Create a new Galois Counter Mode
@@ -66,7 +66,7 @@ func EncryptBitString(BitString, Password string) (BitStringOutput string) {
 	// if any error generating new GCM
 	// handle them
 	if err2 != nil {
-		fmt.Println(err2)
+		fmt.Println("AesGcm Error:", err2)
 	}
 
 	// creates a new byte array the size of the nonce
@@ -75,7 +75,7 @@ func EncryptBitString(BitString, Password string) (BitStringOutput string) {
 	// populates our nonce with a cryptographically secure
 	// random sequence
 	if _, err3 := io.ReadFull(rand.Reader, nonce); err3 != nil {
-		fmt.Println(err3)
+		fmt.Println("Nonce Error:", err3)
 	}
 
 	//Encrypt the data using aesGCM.Seal
@@ -101,7 +101,7 @@ func DecryptBitString(BitString, Password string) (BitStringOutput string) {
 	Block, err1 := aes.NewCipher(Key)
 	// if there are any errors, handle them
 	if err1 != nil {
-		fmt.Println(err1)
+		fmt.Println("Block Error:", err1)
 	}
 
 	//Create a new Galois Counter Mode
@@ -112,7 +112,7 @@ func DecryptBitString(BitString, Password string) (BitStringOutput string) {
 	// if any error generating new GCM
 	// handle them
 	if err2 != nil {
-		fmt.Println(err2)
+		fmt.Println("AesGcm Error:", err2)
 	}
 
 	//Get the nonce size
@@ -124,7 +124,7 @@ func DecryptBitString(BitString, Password string) (BitStringOutput string) {
 	//Decrypt the data
 	DecryptedData, err := AesGcm.Open(nil, Nonce, CipherText, nil)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("DecryptedData Error:", err)
 	}
 
 	//Converting DecryptedData back to a BitString
