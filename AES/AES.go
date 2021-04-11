@@ -88,7 +88,7 @@ func EncryptBitString(BitString, Password string) (BitStringOutput string) {
 	return BitStringOutput
 }
 
-func DecryptBitString(BitString, Password string) (BitStringOutput string) {
+func DecryptBitString(BitString, Password string) (BitStringOutput string, Error error) {
 	var DecryptedDataDec = new(big.Int)
 
 	//Converting BitString to HEX
@@ -122,14 +122,14 @@ func DecryptBitString(BitString, Password string) (BitStringOutput string) {
 	Nonce, CipherText := BitStringToDecrypt[:NonceSize], BitStringToDecrypt[NonceSize:]
 
 	//Decrypt the data
-	DecryptedData, err := AesGcm.Open(nil, Nonce, CipherText, nil)
-	if err != nil {
-		fmt.Println("DecryptedData Error:", err)
+	DecryptedData, err3 := AesGcm.Open(nil, Nonce, CipherText, nil)
+	if err3 != nil {
+		fmt.Println("DecryptedData Error:", err3)
 	}
 
 	//Converting DecryptedData back to a BitString
 	DecryptedDataHex := hex.EncodeToString(DecryptedData)
 	DecryptedDataDec.SetString(DecryptedDataHex, 16)
 	BitStringOutput = DecryptedDataDec.Text(2)
-	return BitStringOutput
+	return BitStringOutput, err3
 }
